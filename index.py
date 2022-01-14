@@ -438,6 +438,14 @@ def refreshHeroes():
     logger('💪 {} heroes sent to work'.format(hero_clicks))
     goToGame()
 
+def check_if_disconnected():
+    clickBtn(images['reload-image'])
+    logger('check if browser is disconnected')
+#def diaAtual():
+#    tempo = time.localtime()
+#    tempo_dia = time.strftime('%d', tempo)
+#    return int(tempo_dia)
+
 
 def main():
     """Main execution setup and loop"""
@@ -445,6 +453,9 @@ def main():
     global hero_clicks
     global login_attempts
     global last_log_is_progress
+
+ #   dia_inicial = diaAtual()
+
     hero_clicks = 0
     login_attempts = 0
     last_log_is_progress = False
@@ -475,6 +486,10 @@ def main():
     while True:
         now = time.time()
 
+        if now - last["check_if_disconnected"] > addRandomness(t['check_if_disconnected'] * 60):
+            last["check_if_disconnecte"] = now
+            check_if_disconnected()
+
         if now - last["check_for_captcha"] > addRandomness(t['check_for_captcha'] * 60):
             last["check_for_captcha"] = now
 
@@ -497,6 +512,13 @@ def main():
         if now - last["refresh_heroes"] > addRandomness( t['refresh_heroes_positions'] * 60):
             last["refresh_heroes"] = now
             refreshHeroesPositions()
+
+        #if hora igual a meia noite, então verificar a quantidade de bcoin no baú, capturar a quantidade e enviar para a planilha
+        #if dia_atual < diaAtual():
+        #   clicar no baú
+        #   clickBtn(images['chest'])
+        #   captura a tela e verifica a quantidade de bcoin
+
 
         #clickBtn(teasureHunt)
         logger(None, progress_indicator=True)
