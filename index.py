@@ -441,8 +441,8 @@ def refreshHeroes():
     goToGame()
 
 def check_if_disconnected():
-    clickBtn(images['reload-image'])
-    logger('check if browser is disconnected')
+    if clickBtn(images['reload-image']):
+        logger('check if browser is disconnected')
 #def diaAtual():
 #    tempo = time.localtime()
 #    tempo_dia = time.strftime('%d', tempo)
@@ -481,7 +481,8 @@ def main():
     "heroes" : 0,
     "new_map" : 0,
     "check_for_captcha" : 0,
-    "refresh_heroes" : 0
+    "refresh_heroes" : 0,
+    "check_if_disconnected": 0
     }
     # =========
 
@@ -489,7 +490,7 @@ def main():
         now = time.time()
 
         if now - last["check_if_disconnected"] > addRandomness(t['check_if_disconnected'] * 60):
-            last["check_if_disconnecte"] = now
+            last["check_if_disconnected"] = now
             check_if_disconnected()
 
         if now - last["check_for_captcha"] > addRandomness(t['check_for_captcha'] * 60):
