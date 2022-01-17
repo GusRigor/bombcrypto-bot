@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-    
+from sympy import false
 from src.logger import logger, loggerMapClicked
 from cv2 import cv2
 from os import listdir
@@ -18,6 +19,7 @@ ct = c['threshold']
 ch = c['home']
 pause = c['time_intervals']['interval_between_moviments']
 pyautogui.PAUSE = pause
+pyautogui.FAILSAFE = false
 
 cat = """
                                                 _
